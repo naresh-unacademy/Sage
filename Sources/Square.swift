@@ -217,6 +217,9 @@ public enum Square: Int, CustomStringConvertible {
     /// H8 square.
     case h8
 
+    public var hashValue: Int {
+        return self.rawValue
+    }
 }
 
 extension Square {

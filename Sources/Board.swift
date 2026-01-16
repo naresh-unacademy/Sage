@@ -276,7 +276,8 @@ public struct Board: Hashable, CustomStringConvertible {
         _bitboards = Array(repeating: 0, count: 12)
         if let variant = variant {
             for piece in Piece.all {
-                _bitboards[piece.hashValue] = Bitboard(startFor: piece)
+                let index = piece.hashValue
+                _bitboards[index] = Bitboard(startFor: piece)
             }
             if variant.isUpsideDown {
                 for index in _bitboards.indices {

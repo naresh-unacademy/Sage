@@ -55,6 +55,10 @@ public enum File: Int, Comparable, CustomStringConvertible {
 
     /// File "H".
     case h = 8
+    
+    public var hashValue: Int {
+        return self.rawValue
+    }
 
 }
 

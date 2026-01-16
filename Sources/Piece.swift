@@ -111,7 +111,10 @@ public struct Piece: Hashable, CustomStringConvertible {
         public func canPromote(_ other: Kind) -> Bool {
             return canPromote() ? other.isPawn : false
         }
-
+        
+        public var hashValue: Int {
+            return self.rawValue
+        }
     }
 
     internal static let _whiteHashes: [Int] = whitePieces.map({ $0.hashValue })

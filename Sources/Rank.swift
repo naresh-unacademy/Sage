@@ -56,7 +56,10 @@ public enum Rank: Int, Comparable, CustomStringConvertible {
 
     /// Rank 8.
     case eight = 8
-
+    
+    public var hashValue: Int {
+        return self.rawValue
+    }
 }
 
 extension Rank {

@@ -214,8 +214,8 @@ public final class Game {
         /// - seealso: [FEN (Wikipedia)](https://en.wikipedia.org/wiki/Forsyth%E2%80%93Edwards_Notation),
         ///            [FEN (Chess Programming Wiki)](https://chessprogramming.wikispaces.com/Forsyth-Edwards+Notation)
         public func fen() -> String {
-            let transform = {
-                "\($0 as Square)".lowercased()
+            let transform = { (square: Square) -> String in
+                square.description.lowercased()
             }
             return board.fen()
                     + " \(playerTurn.isWhite ? "w" : "b") \(castlingRights) "

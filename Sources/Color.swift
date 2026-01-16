@@ -67,5 +67,14 @@ public enum Color: String, CustomStringConvertible {
     public mutating func invert() {
         self = inverse()
     }
+    
+    public var hashValue: Int {
+        switch self {
+        case .white:
+            return 0
+        case .black:
+            return 1
+        }
+    }
 
 }
