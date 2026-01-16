@@ -1,3 +1,4 @@
+// swift-tools-version:5.7
 //
 //  Package.swift
 //  Sage
@@ -20,5 +21,25 @@
 import PackageDescription
 
 let package = Package(
-    name: "Sage"
+    name: "Sage",
+    platforms: [
+        .iOS(.v16)
+    ],
+    products: [
+        .library(
+            name: "Sage",
+            targets: ["Sage"]
+        )
+    ],
+    targets: [
+        .target(
+            name: "Sage",
+            path: "Sources"
+        ),
+        .testTarget(
+            name: "SageTests",
+            dependencies: ["Sage"],
+            path: "Tests"
+        )
+    ]
 )
