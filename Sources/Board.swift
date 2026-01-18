@@ -664,10 +664,10 @@ extension Board: Sequence {
 
 #if os(OSX) || os(iOS) || os(tvOS)
 
-extension Board: CustomPlaygroundQuickLookable {
+extension Board: CustomPlaygroundDisplayConvertible {
 
-    /// Returns the `PlaygroundQuickLook` for `self`.
-    private var _customPlaygroundQuickLook: PlaygroundQuickLook {
+    /// A custom playground description for this instance.
+    public var playgroundDescription: Any {
         let spaceSize: CGFloat = 80
         let boardSize = spaceSize * 8
         let frame = CGRect(x: 0, y: 0, width: boardSize, height: boardSize)
@@ -675,12 +675,7 @@ extension Board: CustomPlaygroundQuickLookable {
         for space in self {
             view.addSubview(space._view(size: spaceSize))
         }
-        return .view(view)
-    }
-
-    /// A custom playground quick look for this instance.
-    public var customPlaygroundQuickLook: PlaygroundQuickLook {
-        return _customPlaygroundQuickLook
+        return view
     }
 }
 
