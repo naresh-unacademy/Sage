@@ -78,4 +78,16 @@ class BugTests: XCTestCase {
         XCTAssertTrue(g7Moves2.contains(Move(start: Square.g7, end: Square.g5)))
         XCTAssertTrue(g7Moves2.contains(Move(start: Square.g7, end: Square.g6)))
     }
+
+    /// Queenside castling: `b8` may be attacked (rook path); only king path `e8–d8–c8` must be safe (FIDE).
+    func testBlackQueensideCastleWhenB8AttackedButKingPathClear() throws {
+        let fen = "r3kbn1/pp2pp2/2p3p1/4Q3/5Rq1/8/PPPP3P/RNB1K3 b Qq - 0 1"
+        guard let position = Game.Position(fen: fen) else {
+            XCTFail("Expected FEN to parse")
+            return
+        }
+        let game = try Game(position: position)
+        let castle = game.movesForPiece(at: .e8).contains { $0.end == .c8 }
+        XCTAssertTrue(castle, "Qe5 sees b8; O-O-O must still be legal")
+    }
 }

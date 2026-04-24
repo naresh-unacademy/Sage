@@ -102,6 +102,25 @@ public struct CastlingRights: CustomStringConvertible {
             return Bitboard(rawValue: rawValue)
         }
 
+        /// Squares that must not be under enemy attack for this castle (FIDE: only the king’s path).
+        ///
+        /// `emptySquares` also includes the rook’s corner transit square on the queenside (`b1` / `b8`),
+        /// which the king never crosses; those squares may be attacked while castling is still legal.
+        internal var kingPathAttackCheckSquares: Bitboard {
+            let rawValue: UInt64
+            switch self {
+            case .whiteKingside:
+                rawValue = 0b01100000
+            case .whiteQueenside:
+                rawValue = 0b00001100
+            case .blackKingside:
+                rawValue = 0b01100000 << 56
+            case .blackQueenside:
+                rawValue = 0b00001100 << 56
+            }
+            return Bitboard(rawValue: rawValue)
+        }
+
         /// The castle destination square of a king.
         public var castleSquare: Square {
 

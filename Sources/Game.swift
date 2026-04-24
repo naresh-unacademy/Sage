@@ -523,7 +523,7 @@ public final class Game {
                 guard right.color == playerTurn && allBitboard & emptySquares == 0 else {
                     continue
                 }
-                for square in emptySquares {
+                for square in right.kingPathAttackCheckSquares {
                     guard board.attackers(to: square, color: piece.color.inverse()).isEmpty else {
                         continue rightLoop
                     }
